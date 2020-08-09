@@ -1,0 +1,6 @@
+framework module Pods_supply_supplyUITests {
+  umbrella header "Pods-supply-supplyUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

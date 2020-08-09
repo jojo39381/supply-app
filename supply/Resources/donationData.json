@@ -1,0 +1,59 @@
+[
+    {
+        "name": "Joseph Yeh",
+        "nameDes": "Healthcare Partner",
+        "itemDes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "item": "Toilet Paper",
+        "quantity": 20,
+        "category": "Rivers",
+        "city": "Berkeley",
+        "state": "California",
+        "id": 1001,
+        "isFeatured": true,
+        "isFavorite": true,
+        "coordinates": {
+            "longitude": -116.166868,
+            "latitude": 34.011286
+        },
+        "imageName": "toilet",
+        "url": ""
+    },
+    {
+        "name": "Malia Jiang",
+        "nameDes": "Healthcare Partner",
+        "itemDes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "item": "Toilet Paper",
+        "quantity": 20,
+        "category": "Lakes",
+        "city": "Berkeley",
+        "state": "California",
+        "id": 1002,
+        "isFeatured": false,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -152.665167,
+            "latitude": 59.980167
+        },
+        "imageName": "toilet",
+        "url": ""
+    },
+    {
+        "name": "Lewana Su",
+        "nameDes": "Healthcare Partner",
+        "itemDes": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "item": "Toilet Paper",
+        "quantity": 20,
+        "category": "Lakes",
+        "city": "Berkeley",
+        "state": "California",
+        "id": 1002,
+        "isFeatured": false,
+        "isFavorite": false,
+        "coordinates": {
+            "longitude": -120.665167,
+            "latitude": 99.980167
+        },
+        "imageName": "toilet",
+        "url": ""
+    }
+]
