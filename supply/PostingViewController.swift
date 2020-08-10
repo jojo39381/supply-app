@@ -38,6 +38,7 @@ class PostingViewController: UIViewController {
         button.setImage(UIImage(named:"donate-big"), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 15
+        button.tag = 0
         return button
     }()
     var requestButton : UIButton = {
@@ -45,6 +46,8 @@ class PostingViewController: UIViewController {
         button.setImage(UIImage(named:"request-big"), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 15
+        button.tag = 1
+        
         return button
     }()
     
@@ -100,7 +103,7 @@ class PostingViewController: UIViewController {
        
         self.view.addSubview(sub)
         donateButton.addTarget(self, action: #selector(postItem(_:)), for: .touchUpInside)
-        
+        requestButton.addTarget(self, action: #selector(postItem(_:)), for: .touchUpInside)
         donateButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         donateButton.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
         donateButton.layer.shadowOpacity = 1.0
@@ -127,9 +130,16 @@ class PostingViewController: UIViewController {
     
     
     @objc func postItem(_ sender: UIButton) {
-  
-        let informationViewController = InformationViewController()
-        self.navigationController?.present(informationViewController, animated: true, completion: nil)
+        print(sender.tag)
+        if sender.tag == 0 {
+            let informationViewController = InformationViewController()
+            self.navigationController?.present(informationViewController, animated: true, completion: nil)
+        }
+        else {
+            let requestViewController = RequestViewController()
+           
+            self.navigationController?.present(requestViewController, animated: true, completion: nil)
+        }
     }
     
     

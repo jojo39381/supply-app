@@ -9,7 +9,8 @@
 import UIKit
 
 protocol FormDelegate {
-    func addToDonation(key: String, description: String)
+    func addTo(key: String, description: String)
+    
 }
 class FormCell: UITableViewCell, UITextFieldDelegate{
 
@@ -32,7 +33,7 @@ class FormCell: UITableViewCell, UITextFieldDelegate{
     }()
     
     @objc func textFieldEditing() {
-        delegate?.addToDonation(key:titleLabel.text!.lowercased(), description: input.text!)
+        delegate?.addTo(key:titleLabel.text!.lowercased(), description: input.text!)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

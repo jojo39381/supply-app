@@ -50,7 +50,7 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if type == "donation" {
+        if type == "Donation" {
             return requestData.count
         }
         else {
@@ -62,6 +62,10 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         if type == "Donation" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ItemCell
             cell.backgroundColor = .white
+            print(indexPath.item)
+            print("/////")
+            print(requestData.count)
+            
             let item = requestData[indexPath.item]
             cell.itemLabel.text = item.item
             cell.locationLabel.text = item.city + ", " + item.state
@@ -87,11 +91,12 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
                 cell.imageView.image = image1
             }
             else {
-                let url = URL(string:item.url)!
-                if let data = try? Data(contentsOf: url)
-                {
-                    let image: UIImage = UIImage(data: data)!
-                    cell.imageView.image = image
+                if let url = URL(string:item.url) {
+                    if let data = try? Data(contentsOf: url)
+                    {
+                        let image: UIImage = UIImage(data: data)!
+                        cell.imageView.image = image
+                    }
                 }
             }
             return cell

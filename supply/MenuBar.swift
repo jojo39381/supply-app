@@ -43,12 +43,15 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 //            self.layoutIfNeeded()
 //        }, completion: nil)
         homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
+        self.collectionView.backgroundColor = colorArray[indexPath.item]
+    
     }
     
+    var colorArray = [UIColor.rgb(red:85, green:72, blue:135), UIColor.rgb(red: 220, green: 203, blue: 216)]
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.rgb(red: 85, green: 72, blue: 135)
+        cv.backgroundColor = UIColor.rgb(red:85, green:72, blue:135)
         cv.dataSource = self
         cv.delegate = self
         return cv
@@ -78,7 +81,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuCell
-        cell.backgroundColor = UIColor.rgb(red: 85, green: 72, blue: 135)
+    
         cell.imageView.image = UIImage(named: imageNames[indexPath.item])?.withRenderingMode(.alwaysTemplate)
         
         cell.category.text = imageNames[indexPath.item]

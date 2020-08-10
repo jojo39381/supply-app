@@ -47,6 +47,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
         button.setImage(UIImage(named:name)?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.contentMode = .center
         button.imageView?.contentMode = .scaleAspectFit
+        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 2
+        button.layer.masksToBounds = false
+        button.layer.cornerRadius = 15
+        button.clipsToBounds = false
         
         return button
     }
@@ -178,11 +185,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
        
         
     }
+    var colorArray = [UIColor.rgb(red:85, green:72, blue:135), UIColor.rgb(red: 220, green: 203, blue: 216)]
+    var textColors = [UIColor.white, UIColor.black]
     func scrollToMenuIndex(menuIndex: Int) {
         let indexPath = IndexPath(item: menuIndex, section: 0)
         toggleCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        
+        self.view.backgroundColor = colorArray[menuIndex]
+        self.sub.backgroundColor = colorArray[menuIndex]
        
+        self.navigationController?.navigationBar.barTintColor = colorArray[menuIndex]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: textColors[indexPath.item]]
     }
     
 

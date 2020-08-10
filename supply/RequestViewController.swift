@@ -8,13 +8,13 @@
 
 import UIKit
 import Photos
-class InformationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FormDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class RequestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FormDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    var donation = Donation()
-    var donationDes = [String:String]()
+    var request = Request()
+    var requestDes = [String:String]()
     
     func addTo(key: String, description: String) {
-        donationDes[key] = description
+        requestDes[key] = description
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,13 +43,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         let tv = UITableView()
         return tv
     }()
-    var photoButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor.rgb(red: 220, green: 203, blue: 216)
-        button.layer.cornerRadius = 15
-        button.setImage(UIImage(named:"photo"), for: .normal)
-        return button
-    }()
+   
     
     var categoryView: UIView = {
         let view = UIView()
@@ -68,12 +62,12 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkPermission()
+        
         self.title = "What would you like to donate?"
-        donationDes["name"] = "Joseph"
-        donationDes["nameDes"] = "HealthCare Partner"
-        donationDes["city"] = "Mexico City"
-        donationDes["state"] = "Mexico"
+        requestDes["name"] = "Joseph"
+        requestDes["nameDes"] = "HealthCare Partner"
+        requestDes["city"] = "Mexico City"
+        requestDes["state"] = "Mexico"
         self.view.backgroundColor = .white
         
         
@@ -97,7 +91,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     
     var urgent: UILabel = {
         let label = UILabel()
-        label.text = "Urgent?"
+        label.text = "Are you able to pick up your item?"
         label.textAlignment = .center
         return label
     }()
@@ -124,22 +118,22 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     func setupView() {
         
         
-        self.view.addSubview(photoButton)
+        
         setupStack()
         categoryView.addSubview(question)
         categoryView.addSubview(categoryStack)
         categoryView.addSubview(urgent)
         categoryView.addSubview(yesButton)
         categoryView.addSubview(noButton)
-        photoButton.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, paddingTop: 10, paddingLeft: 120, paddingBottom: 0, paddingRight: -120, width: 0, height: 120)
+    
         self.view.addSubview(form)
-        form.anchor(top: photoButton.bottomAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: -20, width: 0, height: 220)
-        question.anchor(top: categoryView.topAnchor, left: categoryView.leftAnchor, bottom: nil, right: categoryView.rightAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        form.anchor(top: self.view.safeAreaLayoutGuide.topAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, paddingTop: 100, paddingLeft: 20, paddingBottom: 0, paddingRight: -20, width: 0, height: 220)
+        question.anchor(top: categoryView.topAnchor, left: categoryView.leftAnchor, bottom: nil, right: categoryView.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        categoryStack.anchor(top: question.bottomAnchor, left: categoryView.leftAnchor, bottom: nil, right: categoryView.rightAnchor, paddingTop: 20, paddingLeft: 30, paddingBottom: 0, paddingRight: -30, width: 0, height: 40)
+        categoryStack.anchor(top: question.bottomAnchor, left: categoryView.leftAnchor, bottom: nil, right: categoryView.rightAnchor, paddingTop: 30, paddingLeft: 30, paddingBottom: 0, paddingRight: -30, width: 0, height: 40)
         
         
-        urgent.anchor(top: categoryStack.bottomAnchor, left: categoryView.leftAnchor, bottom: nil, right: categoryView.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        urgent.anchor(top: categoryStack.bottomAnchor, left: categoryView.leftAnchor, bottom: nil, right: categoryView.rightAnchor, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         yesButton.anchor(top: urgent.bottomAnchor, left: categoryView.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 100, paddingBottom: 0, paddingRight: 0, width: 70, height: 30)
         
         noButton.anchor(top: urgent.bottomAnchor, left: nil, bottom: nil, right: categoryView.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: -100, width: 70, height: 30)
@@ -152,14 +146,14 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
         
         self.view.addSubview(categoryView)
         categoryView.backgroundColor = .white
-        categoryView.anchor(top: form.bottomAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, paddingTop: 10, paddingLeft:20, paddingBottom: 0, paddingRight: -20, width: 0, height: 250)
+        categoryView.anchor(top: form.bottomAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, paddingTop: 20, paddingLeft:20, paddingBottom: 0, paddingRight: -20, width: 0, height: 250)
         self.view.addSubview(postButton)
         
         
-        postButton.anchor(top: categoryView.bottomAnchor, left: self.view.leftAnchor, bottom:self.view.safeAreaLayoutGuide.bottomAnchor, right: self.view.rightAnchor, paddingTop: 20, paddingLeft: 70, paddingBottom:-20, paddingRight: -70, width: 0, height: 0)
+        postButton.anchor(top: categoryView.bottomAnchor, left: self.view.leftAnchor, bottom:self.view.safeAreaLayoutGuide.bottomAnchor, right: self.view.rightAnchor, paddingTop: 100, paddingLeft: 70, paddingBottom:-20, paddingRight: -70, width: 0, height: 0)
         postButton.addTarget(self, action: #selector(createNewDonation), for: .touchUpInside)
         
-        photoButton.addTarget(self, action: #selector(addPhoto), for: .touchUpInside)
+        
     
     }
     
@@ -176,30 +170,30 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc func createNewDonation() {
-        donationDes["url"] = imageurl
-        for (key, value) in donationDes {
+        requestDes["url"] = imageurl
+        for (key, value) in requestDes {
             switch key {
             case "name":
-                donation.name = value
+                request.name = value
             case "quantity":
-                donation.quantity = Int(value)!
+                request.quantity = Int(value)!
             case "description":
-                donation.itemDes = value
+                request.itemDes = value
             case "city":
-                donation.city = value
+                request.city = value
             case "state":
-                donation.state = value
+                request.state = value
             case "item":
-                donation.item = value
+                request.item = value
             case "nameDes":
-                donation.nameDes = value
+                request.nameDes = value
             case "url":
-                donation.url = value
+                request.url = value
             default:
                 return
             }
         }
-        donationData.append(donation)
+        requestData.append(request)
         self.dismiss(animated: true, completion: nil)
         
         
@@ -281,35 +275,7 @@ class InformationViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     var imageurl: String?
-    //MARK:- UIImagePickerViewDelegate.
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
-        self.dismiss(animated: true) { [weak self] in
-
-            if let imgUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL{
-                let imgName = imgUrl.lastPathComponent
-                let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-                let localPath = documentDirectory?.appending(imgName)
-
-                let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-                let data = image.pngData()! as NSData
-                data.write(toFile: localPath!, atomically: true)
-                //let imageData = NSData(contentsOfFile: localPath!)!
-                let photoURL = URL.init(fileURLWithPath: localPath!)//NSURL(fileURLWithPath: localPath!)
-                let url = photoURL
-                self?.imageurl = photoURL.absoluteString
-                
-                if let data = try? Data(contentsOf: url)
-                    
-                {
-                    print("haha")
-                    let image: UIImage = UIImage(data: data)!
-                    self!.photoButton.setImage(image, for: .normal)
-                }
-
-            }
-        }
-    }
+    
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
